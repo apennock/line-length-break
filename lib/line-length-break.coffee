@@ -5,12 +5,16 @@ module.exports =
 
   breakLines: ->
     editor     = atom.workspace.getActivePaneItem()
+    if !editor.buffer.cachedText  # if cachedText undefined, return
+      return
     lines      = editor.buffer.cachedText.split('\n')
     length     = atom.config.settings.editor.preferredLineLength or 80
     newContent = []
 
     for line in lines
       if line.length > length
+      if !line  # accommodate 'null' values
+        line = []
         words    = line.split(' ')
         newLines = []
         tmpLine  = []
