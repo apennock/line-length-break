@@ -5,6 +5,8 @@ module.exports =
 
   breakLines: ->
     editor     = atom.workspace.getActivePaneItem()
+    if !editor.buffer  # if no buffer selected, return
+      return
     if !editor.buffer.cachedText  # if cachedText undefined, return
       return
     lines      = editor.buffer.cachedText.split('\n')
