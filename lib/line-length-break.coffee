@@ -14,9 +14,9 @@ module.exports =
     newContent = []
 
     for line in lines
-      if line.length > length
       if !line  # accommodate 'null' values
         line = []
+      if line.length > length + 1
         words    = line.split(' ')
         newLines = []
         tmpLine  = []
